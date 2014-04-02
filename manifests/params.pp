@@ -20,7 +20,7 @@ class ossec::params (
     $source_dir             = ''
     $source_dir_purge       = false
     $template               = ''
-    $client_seed            = pick("${set_client_seed}", undef)
+    $client_seed            = pick("${set_client_seed}", "undef")
     $enable_db              = false
     $enable_debug           = false
     $enable_agentless       = false
