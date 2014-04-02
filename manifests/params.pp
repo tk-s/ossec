@@ -4,14 +4,15 @@
 #
 #
 class ossec::params (
-  $ossec_dir = '/var/lib/ossec',
-  $client_seed = ''
+  $set_ossec_dir = '/var/lib/ossec',
+  $set_client_seed = ''
 ) {
     $service_name           = 'ossec-hids'
     $client_package_name    = 'ossec-hids-client'
     $server_package_name    = 'ossec-hids-server'
     $user                   = 'ossec'
     $group                  = 'ossec'
+    $ossec_dir              = pick("${set_ossec_dir}", '/var/lib/ossec')
     $conf_dir               = "${ossec_dir}/etc"
     $conf_file              = "${conf_dir}/ossec.conf"
     $client_keys            = "${conf_dir}/client.keys"
@@ -19,6 +20,7 @@ class ossec::params (
     $source_dir             = ''
     $source_dir_purge       = false
     $template               = ''
+    $client_seed            = pick("${set_client_seed}", undef)
     $enable_db              = false
     $enable_debug           = false
     $enable_agentless       = false

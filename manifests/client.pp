@@ -1,9 +1,10 @@
 #
-class ossec::client {
-
-    include concat::setup
+class ossec::client(
+    $ossec_dir = $ossec::params::ossec_dir,
+    $client_seed = $ossec::params::client_seed
+) {
     class { "ossec::service": }
-    class { "ossec::config": install_type => "client" }
+    class { "ossec::config": install_type => "client", ossec_dir => "${ossec_dir}", client_seed => "${client_seed}" }
 
     package { 'ossec':
         ensure  => installed,

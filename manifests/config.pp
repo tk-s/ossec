@@ -1,10 +1,14 @@
 # PRIVATE CLASS: do not use directly
 class ossec::config (
-    $install_type
+    $install_type,
+    $ossec_dir = "",
+    $client_seed = ""
     ) {
 
-    include concat::setup
-    include ossec::params
+    class { "ossec::params":
+      set_ossec_dir => "${ossec_dir}",
+      set_client_seed => "${client_seed}"
+    }
 
     validate_re($install_type, '^(client|server)$',
         "Invalid install_type, [$install_type] must be client or server")
@@ -27,7 +31,7 @@ class ossec::config (
     concat::fragment { "ossec_footer":
         target  => "$content",
         order   => '9999',
-        content => template("ossec/config-footer.erb"), 
+        content => template("ossec/config-footer.erb"),
     }
     # only servers get these
     if $install_type == "server" {

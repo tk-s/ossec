@@ -2,12 +2,14 @@ class ossec::server (
     $enable_db        = $ossec::params::enable_db,
     $enable_debug     = $ossec::params::enable_debug,
     $enable_agentless = $ossec::params::enable_agentless,
-    $enable_csyslog   = $ossec::params::enable_csyslog
+    $enable_csyslog   = $ossec::params::enable_csyslog,
+    $ossec_dir = $ossec::params::ossec_dir,
+    $client_seed = $ossec::params::client_seed
     ) {
 
     include concat::setup
     class { "ossec::service": }
-    class { "ossec::config": install_type => "server" }
+    class { "ossec::config": install_type => "server", ossec_dir => "${ossec_dir}", client_seed => "${client_seed}" }
 
     #
     package { 'ossec':
