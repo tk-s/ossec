@@ -8,7 +8,7 @@ class ossec::params (
   $set_client_seed = ''
 ) {
     $service_name           = 'ossec-hids'
-    $client_package_name    = 'ossec-hids-client'
+    $client_package_name    = 'ossec-hids-agent'
     $server_package_name    = 'ossec-hids-server'
     $user                   = 'ossec'
     $group                  = 'ossec'
