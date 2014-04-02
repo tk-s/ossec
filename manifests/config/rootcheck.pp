@@ -31,6 +31,6 @@ class ossec::config::rootcheck (
     concat::fragment { "ossec_rootcheck":
         target  => "$content",
         order   => '65',
-        content => template("ossec/rootcheck-options.erb"),
+        content => template("ossec/rootcheck.erb"),
     }
 }
