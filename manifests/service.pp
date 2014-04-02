@@ -1,12 +1,9 @@
 #
-class ossec::service {
-    if !defined(Class['ossec::params']) {
-        class { "ossec::params":
-            install_type => $ossec::config::install_type
-        }
-    }
+class ossec::service (
+  $service_name
+){
     service { 'ossec':
-        name        => $ossec::params::service_name,
+        name        => $service_name,
         enable      => true,
         ensure      => running,
         hasrestart  => true,

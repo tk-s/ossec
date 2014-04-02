@@ -7,8 +7,9 @@ class ossec::server (
     $client_seed = $ossec::params::client_seed
     ) {
 
-    include concat::setup
-    class { "ossec::service": }
+    class { "ossec::service":
+        service_name => 'ossec-hids-server'
+    }
     class { "ossec::config": install_type => "server", ossec_dir => "${ossec_dir}", client_seed => "${client_seed}" }
 
     #

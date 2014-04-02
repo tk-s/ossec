@@ -3,7 +3,9 @@ class ossec::client(
     $ossec_dir = $ossec::params::ossec_dir,
     $client_seed = $ossec::params::client_seed
 ) {
-    class { "ossec::service": }
+    class { "ossec::service":
+        service_name => 'ossec-hids-agent'
+    }
     class { "ossec::config": install_type => "client", ossec_dir => "${ossec_dir}", client_seed => "${client_seed}" }
 
     package { 'ossec':
