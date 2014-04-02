@@ -6,8 +6,6 @@ define ossec::clientkey (
     $client_seed    = $ossec::params::client_seed
     ) {
 
-    include ossec::params
-
     if !$client_seed or $client_seed == 'undef' {
         fail("Ossec::Clientkey parameter client_seed is not set!")
     }
