@@ -91,9 +91,15 @@ if Facter.value(:kernel) == 'Linux'
     #
     value = [4, 2, 2, 2, 6].collect {|i| bytes.slice!(0, i).pack('C*').unpack('H*') }.join('-')
 
+    valuenum = value.to_i(36).at(0..7)
+
     Facter.add('uuid') do
       confine :kernel => :linux
       setcode { value }
+    end
+    Facter.add('ossec_id') do
+      confine :kernel => :linux
+      setcode { valuenum }
     end
   end
 end
