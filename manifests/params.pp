@@ -13,7 +13,10 @@ class ossec::params (
       'server' => 'ossec-hids-server',
       default => 'ossec-hids'
     }
-    $client_package_name    = 'ossec-hids-agent'
+    $client_package_name    = $operatingsystem ? {
+      'Debian' => 'ossec-hids-agent',
+      default => 'ossec-hids-client'
+    }
     $server_package_name    = 'ossec-hids-server'
     $user                   = 'ossec'
     $group                  = 'ossec'
