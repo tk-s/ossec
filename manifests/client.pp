@@ -4,7 +4,10 @@ class ossec::client(
     $client_seed = $ossec::params::client_seed
 ) {
     class { "ossec::service":
-        service_name => 'ossec-hids-agent'
+        service_name => $operatingsystem ? {
+            'Debian' => 'ossec-hids-agent',
+            default => 'ossec-hids'
+        }
     }
     class { "ossec::config": install_type => "client", ossec_dir => "${ossec_dir}", client_seed => "${client_seed}" }
 
