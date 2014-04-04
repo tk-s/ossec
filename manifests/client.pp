@@ -26,13 +26,13 @@ class ossec::client(
     }
     # set key on the client
     ossec::clientkey { "ossec_key_${::fqdn}_client":
-        client_id   => $::uniqueid,
+        client_id   => pick($::uuid, $::uniqueid),
         client_name => $::fqdn,
         client_ip   => $client_ip,
     }
     # send to server, requires storeconfigs
     @@ossec::clientkey { "ossec_key_${::fqdn}_server":
-        client_id   => $::uniqueid,
+        client_id   => pick($::uuid, $::uniqueid),
         client_name => $::fqdn,
         client_ip   => $client_ip,
     }
