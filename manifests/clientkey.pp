@@ -13,7 +13,7 @@ define ossec::clientkey (
     $key1 = md5("${client_id} ${client_seed}")
     $key2 = md5("${client_name} ${client_ip} ${client_seed}")
 
-    concat::fragment { "ossec-client-key-${client_ip}":
+    concat::fragment { "ossec-client-key-${client_ip}-${client_name}":
         ensure  => present,
         target  => "$ossec::params::client_keys",
         order   => "${client_id}",
