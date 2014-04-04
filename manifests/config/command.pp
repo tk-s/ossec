@@ -1,7 +1,7 @@
 #
 define ossec::config::command (
-    $executable
-    $expect           	= "",
+    $executable,
+    $expect             = "",
     $timeout_allowed    = undef
     ) {
 
