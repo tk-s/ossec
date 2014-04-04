@@ -8,9 +8,11 @@ class ossec::params (
   $set_ossec_dir = '/var/lib/ossec',
   $set_client_seed = ''
 ) {
-    $service_name           = $install_type ? {
-      'client' => 'ossec-hids-agent',
-      'server' => 'ossec-hids-server',
+    $service_name           = $operatingsystem ? {
+      'Debian' => $install_type ? {
+        'client' => 'ossec-hids-agent',
+        'server' => 'ossec-hids-server',
+      },
       default => 'ossec-hids'
     }
     $client_package_name    = $operatingsystem ? {
