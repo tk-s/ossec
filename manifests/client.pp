@@ -37,8 +37,3 @@ class ossec::client(
         client_ip   => $client_ip,
     }
 }
-
-apt-get update && aptitude -o Dpkg::Options::="--force-confold" -y dist-upgrade && aptitude -o Dpkg::Options::="--force-confold" -y  install postgresql-9.3-pgstatplans postgresql-contrib-9.3
-touch /etc/postgresql/9.3/main/postgresql_puppet_extras.conf && pg_dropcluster 9.3 main --stop && pg_upgradecluster 9.1 main
-
-
