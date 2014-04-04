@@ -12,7 +12,13 @@
     <windows_audit><%= @windows_audit %></windows_audit>
 <% end -%>
 <% if @system_audit -%>
+<% if @system_audit.is_a?(Array) -%>
+<% @system_audit.each do |ii| -%>
+    <system_audit><%= ii %></system_audit>
+<% end -%>
+<% else %>
     <system_audit><%= @system_audit %></system_audit>
+<% end -%>
 <% end -%>
 <% if @windows_apps -%>
     <windows_apps><%= @windows_apps %></windows_apps>
