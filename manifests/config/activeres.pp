@@ -1,6 +1,6 @@
 #
 define ossec::config::activeres (
-    $disabled           = undef
+    $disabled           = undef,
     $command           	= undef,
     $location           = undef,
     $agent_id           = undef,
